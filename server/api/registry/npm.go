@@ -1,6 +1,9 @@
 package registry
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 type NPM struct {}
 
@@ -25,9 +28,16 @@ func (n *NPM) get(w http.ResponseWriter, _ *http.Request) {
 func (n *NPM) PackageRouter(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
+	case http.MethodPut:
+		n.uploadPackage(w, r)
 	default:
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
+}
+
+func (n *NPM) uploadPackage(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Here?")
+	w.WriteHeader(http.StatusOK)
 }
 
 // package version handler

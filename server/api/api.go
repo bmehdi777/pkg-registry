@@ -20,7 +20,7 @@ func NewApiRegistryMux() *http.ServeMux {
 	npm := registry.NPM{}
 	apiRegistryMux.HandleFunc("/npm", npm.RootRouter)
 	apiRegistryMux.HandleFunc("/npm/{packageName}", npm.PackageRouter)
-	apiRegistryMux.HandleFunc("npm/{packageName}/{version}", npm.PackageVersionRouter)
+	apiRegistryMux.HandleFunc("/npm/{packageName}/{version}", npm.PackageVersionRouter)
 
 	return apiRegistryMux
 }
